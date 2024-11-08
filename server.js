@@ -1,7 +1,8 @@
 const mongoose=require("mongoose");
 const express=require("express");
 const cors=require("cors");
-const multer=require("multer")
+const multer=require("multer");
+const path=require("path");
 
 const storage = multer.diskStorage({
     destination:  (req, file, cb) => {
@@ -23,6 +24,8 @@ app.use(express.json());//inbuild middleware
 app.use(express.urlencoded());
 app.use('/profilePics', express.static('profilePics'));
 
+app.use(express.static(path.join(__dirname,"./client/build")))//for build folder inside client access to public
+
 let userSchema=new mongoose.Schema({
     firstName:String,
     lastName:String,
@@ -34,6 +37,10 @@ let userSchema=new mongoose.Schema({
 });
 
 let User=new mongoose.model(`users`,userSchema);
+
+app.get("*",(req,res)=>{
+    res.sendFile("./client/build/index.html");
+})
 
 app.post("/login",upload.none(),async(req,res)=>{
     console.log("------This is request from signin-------")

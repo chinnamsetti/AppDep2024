@@ -18,7 +18,7 @@ function SignIn() {
                 body:dataTOSend,
              };
              
-         let JSONData= await fetch("http://localhost:1405/login",reqOptions);
+         let JSONData= await fetch("/login",reqOptions);
          let JSOData=await JSONData.json();
          if(JSOData.status=="Success"){
             

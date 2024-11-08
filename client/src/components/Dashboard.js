@@ -11,7 +11,7 @@ function Dashboard() {
         <TopNavigation></TopNavigation>
         <h1>Welcome User</h1>
         <h2>Welcome {storeObj.loginDetails.firstName}</h2>
-        <img src={`http://localhost:1405/${storeObj.loginDetails.profilePic}`}></img>
+        <img src={`/${storeObj.loginDetails.profilePic}`}></img>
     </div>
   )
 }
